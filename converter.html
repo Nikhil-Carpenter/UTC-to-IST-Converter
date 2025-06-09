@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>UTC to IST Converter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f3f3f3;
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      input,
+      button {
+        padding: 10px;
+        font-size: 16px;
+        margin: 10px 0;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .output {
+        margin-top: 20px;
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🕓 UTC to IST Date & Time Converter</h2>
+    <a href="/UTC_to_IST_Converter/index.html"
+      >click to know how to get timestamp for insta reels</a
+    ><br /><br />
+    <label for="datetime">Enter UTC datetime (ISO):</label><br />
+    <input
+      type="text"
+      id="datetime"
+      placeholder="e.g. 2025-06-06T14:56:33.000Z"
+    />
+    <button onclick="convertTime()">Convert to IST</button>
+
+    <div class="output" id="result"></div>
+
+    <script>
+      function convertTime() {
+        const input = document.getElementById("datetime").value;
+        const date = new Date(input);
+
+        if (isNaN(date.getTime())) {
+          document.getElementById("result").innerHTML =
+            "❌ Invalid datetime format!";
+          return;
+        }
+
+        const options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          timeZone: "Asia/Kolkata", // This is the key!
+          timeZoneName: "short",
+        };
+
+        const formatted = date.toLocaleString("en-IN", options);
+        document.getElementById(
+          "result"
+        ).innerHTML = `✅ IST: <strong>${formatted}</strong>`;
+      }
+    </script>
+  </body>
+</html>

@@ -2,77 +2,109 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>UTC to IST Converter</title>
+    <title>How to See Exact Time of Instagram Reel</title>
     <style>
       body {
         font-family: Arial, sans-serif;
-        padding: 20px;
-        background: #f3f3f3;
+        padding: 30px;
+        padding-top: 0px;
+
+        background: #f9f9f9;
+        line-height: 1.7;
+      }
+
+      h1 {
+        color: #e1306c;
       }
 
       h2 {
+        margin-top: 30px;
         color: #333;
       }
 
-      input,
-      button {
-        padding: 10px;
-        font-size: 16px;
-        margin: 10px 0;
-        width: 100%;
-        max-width: 400px;
+      ol,
+      ul {
+        margin-left: 20px;
       }
 
-      .output {
+      code {
+        background: #eee;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-size: 90%;
+      }
+
+      .note {
+        background: #fff3cd;
+        padding: 10px 15px;
+        border-left: 4px solid #ffc107;
         margin-top: 20px;
-        background: white;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .important {
+        background: #d1ecf1;
+        padding: 10px 15px;
+        border-left: 4px solid #17a2b8;
+        margin-top: 20px;
       }
     </style>
   </head>
   <body>
-    <h2>🕓 UTC to IST Date & Time Converter</h2>
-    <a href="/UTC_to_IST_Converter/how.html"></a>
-    <label for="datetime">Enter UTC datetime (ISO):</label><br />
-    <input
-      type="text"
-      id="datetime"
-      placeholder="e.g. 2025-06-06T14:56:33.000Z"
-    />
-    <button onclick="convertTime()">Convert to IST</button>
+    <h1>📸 How to See the Exact Time a Reel Was Posted on Instagram</h1>
 
-    <div class="output" id="result"></div>
+    <p>
+      Follow these steps to find the exact time and date a reel was uploaded
+      using Instagram on desktop:
+    </p>
 
-    <script>
-      function convertTime() {
-        const input = document.getElementById("datetime").value;
-        const date = new Date(input);
+    <h2>🔍 Step-by-Step Guide (Using Inspect Element)</h2>
 
-        if (isNaN(date.getTime())) {
-          document.getElementById("result").innerHTML =
-            "❌ Invalid datetime format!";
-          return;
-        }
+    <ol>
+      <li>
+        Open
+        <strong
+          ><a href="https://www.instagram.com" target="_blank"
+            >instagram.com</a
+          ></strong
+        >
+        in a desktop browser like Chrome.
+      </li>
+      <li>Log into your account (if not already).</li>
+      <li>Go to the Instagram Reel whose post time you want to check.</li>
+      <li>
+        Right-click anywhere near the reel description and click
+        <strong>Inspect</strong> (or press <code>Ctrl + Shift + I</code>).
+      </li>
+      <li>
+        Press <code>Ctrl + F</code> to open the search bar inside the Inspect
+        tool.
+      </li>
+      <li>Search for: <code>datetime</code></li>
+      <li>
+        You’ll find a tag like this:<br />
+        <code
+          >&lt;time datetime="2025-06-06T14:56:33.000Z"&gt;2 hours
+          ago&lt;/time&gt;</code
+        >
+      </li>
+      <li>
+        That <code>datetime</code> value shows the exact
+        <strong>UTC time</strong> of posting.
+      </li>
+    </ol>
 
-        const options = {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          timeZone: "Asia/Kolkata", // This is the key!
-          timeZoneName: "short",
-        };
+    <div class="important">
+      <strong>✅ Convert to IST:</strong>
+      Add +5:30 hours to the UTC time to get Indian Standard Time (IST).
+      <br />
+      Example: <code>2025-06-06T14:56:33.000Z</code> →
+      <strong>8:26 PM IST</strong><br />
+      <a href="./converter.html">Go to Converter</a>
+    </div>
 
-        const formatted = date.toLocaleString("en-IN", options);
-        document.getElementById(
-          "result"
-        ).innerHTML = `✅ IST: <strong>${formatted}</strong>`;
-      }
-    </script>
+    <div class="note">
+      📱 Instagram app only shows "X hours ago" — not the exact time. Use the
+      web version + Inspect tool for full details.
+    </div>
   </body>
 </html>
